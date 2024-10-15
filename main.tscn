@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://br8xgxovu7ff2"]
+[gd_scene load_steps=12 format=3 uid="uid://br8xgxovu7ff2"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_r8luw"]
 [ext_resource type="Texture2D" uid="uid://bw853m6a1xass" path="res://myChar.png" id="1_y3jwb"]
 [ext_resource type="Texture2D" uid="uid://dswp22sc2yk1u" path="res://preview.png" id="3_nlkds"]
+[ext_resource type="PackedScene" uid="uid://cjd34pjhixi75" path="res://BaseBed.tscn" id="4_oa74r"]
 
 [sub_resource type="Animation" id="Animation_d855e"]
 length = 0.001
@@ -115,22 +116,37 @@ libraries = {
 position = Vector2(-29, 23.6667)
 shape = SubResource("RectangleShape2D_ck05p")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StaticBody2D" parent="." instance=ExtResource("4_oa74r")]
+position = Vector2(-3215.67, 1827.33)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D"]
+z_index = -4
+position = Vector2(-98.3333, -53)
+texture = ExtResource("3_nlkds")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D"]
+visible = false
+z_index = -1
+z_as_relative = false
+offset_left = -96.0
+offset_top = -54.0
+offset_right = 1485.0
+offset_bottom = 903.0
+color = Color(0, 0, 0, 1)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-28, 23)
+visibility_layer = 3
+z_index = 5
+z_as_relative = false
+position = Vector2(61.3333, 284)
+scale = Vector2(1.01333, 1)
 texture = ExtResource("1_y3jwb")
 hframes = 4
 vframes = 5
 frame = 16
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -96.0
-offset_top = -54.0
-offset_right = 435.0
-offset_bottom = 276.0
-color = Color(0, 0, 0, 1)
-
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(-94.6667, -54.3333)
-scale = Vector2(0.505609, 0.463778)
-texture = ExtResource("3_nlkds")
-centered = false
